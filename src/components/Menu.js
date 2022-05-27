@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import CardsMenu from "./CardsMenu";
 import "../css/Menu.css";
 import Header from "./Header";
-import AsideMenu from "./AsideMenu";
+import AsideMenu from "./asideMenu";
 
 export default function Menu() {
   const [products, setProducts] = useState([]);

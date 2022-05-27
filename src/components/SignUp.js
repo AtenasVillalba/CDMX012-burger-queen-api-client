@@ -1,4 +1,8 @@
-import { createUserWithEmailAndPassword, auth } from "../lib/firebase-config";
+import {
+  createUserWithEmailAndPassword,
+  auth,
+  updateProfile,
+} from "../lib/firebase-config";
 import { useNavigate } from "react-router";
 import { useState, Fragment } from "react";
 import "../css/Login.css";
@@ -19,8 +23,13 @@ const SignUp = () => {
     setErrorPassword("");
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
+        updateProfile(auth.currentUser, {
+          email: email,
+          password: password,
+          photoURL: "https://random.imagecdn.app/300/300",
+          displayName: user,
+        });
+        //const user = userCredential.user;
         console.log(user);
         navigate("/menu");
       })
@@ -80,7 +89,9 @@ const SignUp = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <section className="title-error-sec">
-          {errorPassword && <p className="title-error blink">{errorPassword}</p>}
+          {errorPassword && (
+            <p className="title-error blink">{errorPassword}</p>
+          )}
         </section>
 
         <button className="buttonLogin" onClick={signUpWithEmail}>
