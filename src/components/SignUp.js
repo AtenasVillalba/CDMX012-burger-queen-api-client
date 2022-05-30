@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   auth,
   updateProfile,
+  saveData,
 } from "../lib/firebase-config";
 import { useNavigate } from "react-router";
 import { useState, Fragment } from "react";
@@ -12,7 +13,7 @@ const SignUp = () => {
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const [user, setUserName] = useState("");
-  const [position, setPosition] = useState("");
+  const [rol, setRol] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const SignUp = () => {
     e.preventDefault();
     setErrorEmail("");
     setErrorPassword("");
-    createUserWithEmailAndPassword(auth, email, password)
+    const aboutUser= createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         updateProfile(auth.currentUser, {
           email: email,
@@ -31,6 +32,7 @@ const SignUp = () => {
         });
         //const user = userCredential.user;
         console.log(user);
+        saveData(rol, user);
         navigate("/menu");
       })
       .catch((error) => {
@@ -50,7 +52,11 @@ const SignUp = () => {
           setErrorPassword(" Password should be at least 6 characters ");
         }
       });
+
+   
   };
+
+
   return (
     <section className="login-container">
       <img className="logoBurger" src={logo} alt="logoBurger" />
@@ -63,13 +69,18 @@ const SignUp = () => {
           autoComplete="off"
           onChange={(e) => setUserName(e.target.value)}
         />
-        <input
+        <select
           type="text"
           className="input"
           placeholder="Position:"
           autoComplete="off"
-          onChange={(e) => setPosition(e.target.value)}
-        />
+          onChange={(e) => setRol(e.target.value)}
+        >
+          <option>Select a rol...</option>
+          <option>waiter/waitress</option>
+          <option>Chef</option>
+          <option>Manager</option>
+        </select>
         <input
           type="email"
           className="input"

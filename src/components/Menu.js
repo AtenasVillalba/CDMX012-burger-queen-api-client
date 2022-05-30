@@ -1,4 +1,3 @@
-// import { useNavigate } from "react-router-dom";
 import { getMenu } from "../lib/RequestHandler";
 import { useEffect, useState } from "react";
 import CardsMenu from "./CardsMenu";
