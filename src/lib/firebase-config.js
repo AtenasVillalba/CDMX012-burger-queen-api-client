@@ -4,7 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, query, where, getDocs } from "firebase/firestore";
 export {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -58,7 +58,22 @@ export let saveData = (rol, name) => {
       email,
      rol,
     });
-  } else {
-    // No user is signed in.
-  }
+  } 
+};
+
+export const getRol = async () => {
+  const userRole = [];
+  const q = query(
+    collection(db, "profile"),
+    where("email", "==", auth.currentUser.email)
+  );
+  console.log(q);
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    //console.log(doc.data().rol);
+    userRole.push(doc.data().rol);
+  });
+  console.log(userRole[0]);
+  return userRole[0]
 };

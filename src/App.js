@@ -14,30 +14,22 @@ import {
   where,
   getDocs,
   onSnapshot,
+  getRol
 } from "./lib/firebase-config";
 import { useEffect, useState } from "react";
 import { EmailAuthCredential, getAuth } from "firebase/auth";
-import { async } from "@firebase/util";
 
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(null);
-
-  const getRol = async () => {
-    const q = query(
-      collection(db, "profile"),
-      where("email", "==", auth.currentUser.email)
-    );
-    const querySnapshot = await getDocs(q);
-    const role = querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      const role = doc.data().rol;
-    });
-    return role;
-  };
+  const [role, setRole] = useState("");
 
   useEffect(() => {
     getRol();
-  }, [isLogedIn]);
+  }, [onAuthStateChanged]);
+
+  
+  console.log(getRol());
+
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -50,19 +42,20 @@ function App() {
         rol: userRol,
       };
       console.log(userData);
-      setIsLogedIn(userDa);
+      setIsLogedIn(user);
     } else {
       console.log(user);
       setIsLogedIn(null);
     }
   });
 
+ 
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path="/"
-          element={isLogedIn ? <Navigate to="/menu" /> : <Login replace />}
+          element={isLogedIn? <Navigate to="/menu" /> : <Login replace />}
         />
         <Route
           path="/signUp"
