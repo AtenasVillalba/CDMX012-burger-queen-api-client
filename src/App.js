@@ -1,25 +1,26 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './routes/Login';
-import SignUp from './routes/SignUp';
-import Menu from './routes/Menu';
- 
-function  App (){
-  
-  return(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/signUp" element={<SignUp />} />
-      <Route path="/menu" element={<Menu />} />
-      {/* <Route path="/menu/order" element={<Order />} />
-      <Route path="/kitchen/order/:id" element={<Kitchen />} />
-      <Route path="/kitchen/order/List" element={<OrderList />} />
-      <Route path="/personal" element={<Personal />} />
-      <Route path="/products" element={<Products />} /> */}
-    </Routes>
-  </BrowserRouter>
 
-);
+import React, { useState } from "react";
+import { getAuth, onAuthStateChanged } from "./lib/firebase-config";
+import GlobalRouter from "./routers/GlobalRouters";
 
+
+function App() {
+  const [isAuth, setIsAuth] = useState(null);
+  const auth = getAuth();
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setIsAuth(user);
+    } else {
+      setIsAuth(null);
+    }
+  });
+  return (
+    
+    <section>
+      <GlobalRouter isAuth={isAuth} />
+    </section>
+
+  );
 }
 export default App;
