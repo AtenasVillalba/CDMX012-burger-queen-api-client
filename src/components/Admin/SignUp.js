@@ -1,10 +1,10 @@
-import { createUserWithEmailAndPassword, auth } from "../lib/firebase-config";
+import { createUserWithEmailAndPassword, auth } from "../../lib/firebase-config";
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import React, { useState } from "react";
 import "../css/Login.css";
 
 import logo from "../assets/burger4.png";
-import Header from "./Header";
+import Header from "../Header";
 import "../css/SignUp.css";
 
 const SignUp = () => {
@@ -45,6 +45,7 @@ const SignUp = () => {
         }
       });
   };
+  
   return (
     <section className="login-container">
       <Header />
@@ -86,9 +87,7 @@ const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <section className="title-error-sec">
-            {errorPassword && (
-              <p className="title-error blink">{errorPassword}</p>
-            )}
+            {errorPassword && <p className="title-error blink">{errorPassword}</p>}
           </section>
 
           <button className="buttonLogin" onClick={signUpWithEmail}>
