@@ -4,12 +4,13 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Order from "./Order";
 import { addOrder } from "../../lib/RequestHandler";
 import DateTime from "./DateTime";
+import { getAuth} from "@firebase/auth";
 
 export default function AsideMenu(props) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const { order, updateOrder } = props
-  const [name, setName] = useState("");
-  const [total, setTotal] = useState("");
+  const { order, updateOrder,total,setTotal,contador } = props
+  const [name, setName] = useState("");  
+  
 
   const ClientName = (event) => {
     setName(event.target.value);
@@ -26,10 +27,13 @@ export default function AsideMenu(props) {
     addOrder(order,name)
     updateOrder({})
     setName("")
-    // setTotal("")
+  
+    
   
 }
-
+  const auth = getAuth();
+  const userData = auth.currentUser;
+const nameEmployee=userData.displayName;
 
 return (
 
@@ -42,7 +46,7 @@ return (
         aria-label="logo"
       >
         <section className="countAndCart">
-          <p>32</p>
+          <p>{contador}</p>
           <ShoppingCartIcon id="shopping" sx={{ fontSize: 50 }} />
         </section>
       </IconButton>
@@ -57,7 +61,7 @@ return (
           role="presentation"
           textAlign="center"
           sx={{
-            backgroundColor: "primary.dark",
+
             width: 400,
             height: 1000,
           }}
@@ -70,7 +74,9 @@ return (
             />
              <DateTime/>
             
-            <p>Rol y nombre</p>
+
+          
+            <p>Waitress: { nameEmployee}</p>
             <hr />
           </header>
           <section>
@@ -93,12 +99,17 @@ return (
                     name={product.name}
                     price={product.price}
                     qty={product.qty}
+                    order={order}
+                    updateOrder={updateOrder}
+                    id={product.id}
+                    watchBtm={true}
+                    total={Total}
                   ></Order>
                 );
               })}
             <p>Total:$...{total}</p>
           </section>
-          <button onClick={Total}>Process Order</button>
+          <button className="btonTotal" onClick={Total}>Process Order</button>
           {/* <Typography variant="h6" component="div">
             Side Panel
           </Typography> */}

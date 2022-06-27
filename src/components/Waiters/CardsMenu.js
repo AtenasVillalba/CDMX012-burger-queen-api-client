@@ -1,8 +1,11 @@
-import React from "react";
 
+import React from "react";
 export default function CardsMenu(props){
-const {id, imgProducts, name, price, order, updateOrder}=props
+        
+
+const {id, imgProducts, name, price, order, updateOrder,setContador,contador}=props
 const add=(event)=>{
+    
     if(!order.hasOwnProperty("products")){
         console.log("esta orden no tiene nada")
         updateOrder(
@@ -26,10 +29,11 @@ const add=(event)=>{
        }
        updateOrder(order)
     }
-    
-    console.log(order)
 
+setContador(contador+1);
 }
+
+
 return (
     <section className="boxCards">
         <img 

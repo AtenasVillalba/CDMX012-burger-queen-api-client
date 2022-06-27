@@ -92,6 +92,7 @@ export const signUpWithEmail = (
         displayName: user,
       });
       saveData(position, user, turn);
+     
       drawerHandler();
     })
     .catch((error) => {
@@ -107,6 +108,7 @@ export const signUpWithEmail = (
       }
     });
 };
+
 
 let saveData = async (rol, name, turn) => {
   const auth = getAuth();
@@ -144,15 +146,28 @@ export const getData = (setEmployee) => {
 export const editUser= async(id, name, rol, turn, drawerHandler)=> {
   const dataRef = doc(db, "profile", id);
   const data = { displayName: name, rol: rol, turn: turn };
+  
   await updateDoc(dataRef, data);
   drawerHandler();
   console.log("funciona");
 }
 
-export const deleteUser = (id) => {
-  
-  deleteDoc(doc(db, "profile", id));
+export const deleteUsers = (id) => {
+
+    deleteDoc(doc(db, "profile", id));
 };
+
+// let deleteUserEmail=()=>{
+//   const auth = getAuth();
+//   const user = auth.currentUser;
+  
+//   deleteUser(user).then(() => {
+//  console .log("mensaje eliminado")
+//   }).catch((error) => {
+//     // An error ocurred
+//     console .log("mensaje no eliminado")
+//   });
+//   }
 
 export const logOut = async () => {
   const auth = getAuth();

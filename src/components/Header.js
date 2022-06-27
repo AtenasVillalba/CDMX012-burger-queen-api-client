@@ -4,13 +4,14 @@ import { logOut, getAuth } from "../lib/firebase-config";
 import React, { useEffect, useState } from "react";
 
 export default function Header(props) {
+  const { updateComandaOrders, updateComandaOrders2} =
+    props;
   const [role, setRole] = useState(null);
   const navigate = useNavigate();
-  const { updateComandaOrders } = props;
   const auth = getAuth();
   const userData = auth.currentUser;
 
-  useEffect(()=>{
+  useEffect(() => {
     if (userData) {
       const userEmail = userData.email;
       const initial = userEmail[0];
@@ -22,8 +23,7 @@ export default function Header(props) {
         setRole("chef");
       }
     }
-  },[])
-  console.log(role);
+  }, []);
 
   const returnLogin = () => {
     logOut();
@@ -39,8 +39,12 @@ export default function Header(props) {
           src={require("../assets/burger4.png")}
         />
         <p className="menu">MENU</p>
-        <button id="btnMenu">Employees</button>
-        <button id="btnOrder">Product</button>
+        <button id="btnMenu" onClick={updateComandaOrders}>
+          Employees
+        </button>
+        <button id="btnOrder" onClick={updateComandaOrders2}>
+          Product
+        </button>
         <button className="btnOut" onClick={returnLogin} />
       </header>
     );
@@ -53,9 +57,11 @@ export default function Header(props) {
           src={require("../assets/burger4.png")}
         />
         <p className="menu">MENU</p>
-        <button id="btnMenu">Menu</button>
+        <button id="btnMenu" onClick={updateComandaOrders2}>
+          Finished orders
+        </button>
         <button id="btnOrder" onClick={updateComandaOrders}>
-          Order
+          Orders
         </button>
         <button className="btnOut" onClick={returnLogin} />
       </header>
@@ -68,25 +74,9 @@ export default function Header(props) {
           alt="logoBQ"
           src={require("../assets/burger4.png")}
         />
-        <p className="menu">MENU</p>
+        <p className="menu">KITCHEN</p>
         <button className="btnOut" onClick={returnLogin} />
       </header>
     );
   }
-
-  // return (
-  //   <header className="header-container">
-  //     <img
-  //       className="logo"
-  //       alt="logoBQ"
-  //       src={require("../assets/burger4.png")}
-  //     />
-  //     <p className="menu">MENU</p>
-  //     <button id="btnMenu">Menu</button>
-  //     <button id="btnOrder" onClick={updateComandaOrders}>
-  //       Order
-  //     </button>
-  //     <button className="btnOut" onClick={returnLogin} />
-  //   </header>
-  // );
-  }
+}
