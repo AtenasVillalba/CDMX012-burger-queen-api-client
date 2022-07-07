@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Menu from "../components/Waiters/MenuView";
+import MenuView from "../components/Waiters/MenuView";
 import { auth, onAuthStateChanged } from "../lib/firebase-config";
-import Chef from "../components/chef/Chef";
+import ChefView from "../components/chef/ChefView";
 import Personal from "../components/Admin/PersonalView";
 
 const PrivateRoutes = () => {
@@ -13,7 +13,6 @@ const PrivateRoutes = () => {
     if (user) {
       const userEmail = user.email;
       const initial = userEmail[0];
-      console.log(typeof initial);
 
       if (initial === "a") {
         setRoleAdmin("admin");
@@ -23,8 +22,6 @@ const PrivateRoutes = () => {
         setRole("chef");
       }
     }
-    console.log(user);
-    console.log(role);
   });
 
   if (roleAdmin === "admin") {
@@ -36,13 +33,13 @@ const PrivateRoutes = () => {
   } else if (role === "waiter") {
     return (
       <Routes>
-        <Route path="/" element={<Menu />} />
+        <Route path="/" element={<MenuView />} />
       </Routes>
     );
   } else if (role === "chef") {
     return (
       <Routes>
-        <Route path="/" element={<Chef />} />
+        <Route path="/" element={<ChefView />} />
       </Routes>
     );
   }
