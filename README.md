@@ -1,5 +1,6 @@
 # Burger Queen (API Client)
 <p align="center"><img src="https://user-images.githubusercontent.com/97549677/178085580-5aca02cf-0868-4922-9ef3-ef021d2d44a2.jpeg"/> </p>
+
 ## Índice
 
 * [1.Resumen del proyecto](#1-resumen-del-proyecto)
