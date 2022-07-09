@@ -2,13 +2,16 @@
 <p align="center"><img src="https://user-images.githubusercontent.com/97549677/178085580-5aca02cf-0868-4922-9ef3-ef021d2d44a2.jpeg"/> </p>
 ## Índice
 
-* [1. Resumen del proyecto](#1-resumen-del-proyecto)
-* [2. Tecnologías](#2.1 Tecnologías)
-* [3.Prototipos ](#3-Prototipos)
-* [4. Historias de usuario](#4-Historias de usuario)
-* [5.Test de usabilidad ](#5-criterios-de-aceptación-del-proyecto)
-* [6. Vista de la intefaz.](#6-vista-interfaz)
-* [7. Creadoras.](#7-creadoras)
+* [1.Resumen del proyecto](#1-resumen-del-proyecto)
+* [2.Tecnologías](#2-tecnologías)
+* [3.Prototipos ](#3-prototipos)
+* [4.Historias de usuario ](#4-historias-de-usuario)
+* [5.Test de usabilidad ](#5-test-de-usabilidad)
+* [6.Vista de la intefaz.](#6-vista-interfaz)
+* [7.Deploy.](#6-deploy)
+
+* [8.Creadoras.](8-creadoras)
+
 ***
 
 ## 1. Resumen del proyecto
@@ -40,7 +43,8 @@ Los prototipos fueron creados por medio de Figma.
 
 ## 4. Historias de usuario.
 Dividimos este proyecto en 6 historias de usuario para poder visualizar todas las necesidades y atenderlas de una manera ordenada y eficiente.
-https://burgerqueenteam.netlify.app/
+
+![HU!](https://user-images.githubusercontent.com/97549677/178088062-b1bf8498-6dc7-4661-957f-a92bd0f17b4a.jpeg)
 
 
 
