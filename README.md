@@ -66,8 +66,9 @@ Está aplicación requiere de autorización para poder ingresar a su contenido s
  
  
  ## 7. Deploy
+ Para acceder e interactuar con la página de Burger Queen debes dar click en la imagen del logo de Burger Queen.
  <p align="center">
-<a href="https://burgerqueenteam.netlify.app/"><img align="center" src="https://user-images.githubusercontent.com/97549677/178087536-93f68ae0-8062-477d-9758-8e2398c5a3cf.svg" alt=" https://burgerqueenteam.netlify.app" height="50" width="60" /></a>
+<a href="https://burgerqueenteam.netlify.app/"><img align="center" src="https://user-images.githubusercontent.com/97549677/178087536-93f68ae0-8062-477d-9758-8e2398c5a3cf.svg" alt=" https://burgerqueenteam.netlify.app"  /></a>
 </p>
 
  
